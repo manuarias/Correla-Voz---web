@@ -1,0 +1,48 @@
+{
+  "importantLinks": [
+    { "title": "Seguir en Instagram", "url": "https://www.instagram.com/correla_voz/", "iconName": "instagram" },
+    { "title": "Ver en YouTube", "url": "https://youtu.be/EkqDewCIcWk?si=kD4mQs2jEB9yVCz4", "iconName": "youtube" },
+    { "title": "Escuchar en Spotify", "url": "https://open.spotify.com/track/6ABWoKbJW5wBPkRBvGr6e7?si=a58c9d2796a94586", "iconName": "spotify" }
+  ],
+  "calendarEvents": [
+    { "date": "2025-11-29", "day": "29", "month": "NOV", "title": "Cumple Murga Caides del Catre", "location": "La estación de Trenes", "time": "15:00 hs", "description": "Nos presentamos en el cumple de una murga amiga. 10 Años de Carnaval!" },
+    { "date": "2026-02-16", "day": "16", "month": "FEV", "title": "Carnaval 2026 - día 1", "location": "Avenida del Encuentro", "time": "17:00 hs", "description": "Vení a compartir con nosotros El Carnaval" },
+    { "date": "2026-02-16", "day": "17", "month": "FEV", "title": "Carnaval 2026 - día 2", "location": "Avenida del Encuentro", "time": "17:00 hs", "description": "Vení a compartir con nosotros El Carnaval" },
+    { "date": "2026-02-16", "day": "18", "month": "FEV", "title": "Carnaval 2026 - día 3", "location": "Avenida del Encuentro", "time": "17:00 hs", "description": "Vení a compartir con nosotros El Carnaval, hacemos pasada con el Rejunte!" }
+  ],
+  "photoAlbums": [
+    { "title": "Tandilia 2025", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/tandilia2025.jpg", "albumUrl": "https://photos.app.goo.gl/2Mk5Bhqd7YbJwVoS9", "date": "15 de Noviembre, 2025" },
+    { "title": "Asadete Corrella Nov 2025", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/asadete.jpg", "albumUrl": "https://photos.app.goo.gl/JgzWGYsaw1PmeVcc9", "date": "09 de Noviembre, 2025" },
+    { "title": "Cumplecorso Atrapasueños 2025", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/atrapa.jpg", "albumUrl": "https://photos.app.goo.gl/VE1QCzKrB7M3uvoQ8", "date": "18 de Octubre, 2025" },
+    { "title": "Cumplecorso Correla 11 años 2025", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/cumplecorso2025.jpg", "albumUrl": "https://photos.app.goo.gl/CXPratfVxbe1f2NE9", "date": "20 de Septiembre, 2025" },
+    { "title": "Cumplecorso Atrapasueños 2024", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/CumpleAtrapa2024.jpg", "albumUrl": "https://photos.app.goo.gl/h4hwVMfAnhHR37W7A", "date": "05 de Octubre, 2024" },
+    { "title": "Cumplecorso Correla 10 años 2024", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/correlaCumple2024.jpg", "albumUrl": "https://photos.app.goo.gl/tdFYXqhBCsvsk4gz5", "date": "14 de Septiembre, 2024" }
+  ],
+  "socialLinks": [
+      { "name": "instagram", "url": "https://www.instagram.com/correla_voz/" },
+      { "name": "youtube", "url": "https://youtu.be/EkqDewCIcWk?si=kD4mQs2jEB9yVCz4" },
+      { "name": "spotify", "url": "https://open.spotify.com/track/6ABWoKbJW5wBPkRBvGr6e7?si=a58c9d2796a94586" }
+  ],
+  "aboutSection": {
+    "review": "Somos más que una murga; somos un colectivo que respira carnaval. Nacimos en las calles de Montevideo con el bombo como latido y la crítica como bandera. Correla Voz es el grito de los que no tienen voz, una explosión de color, música y poesía que busca sacudir el alma y despertar conciencias. Cada actuación es un ritual, una fiesta popular donde la alegría y el compromiso se abrazan.",
+    "history": [
+      {
+        "type": "text",
+        "content": "Todo comenzó en 2013, en una esquina del barrio, con un puñado de amigos y un sueño compartido. Lo que empezó como ensayos improvisados se convirtió en una pasión que nos llevó a escenarios, desfiles y corazones por todo el país."
+      },
+      {
+        "type": "image",
+        "src": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/historyCorrela.jpg",
+        "alt": "Foto del cumplecorso 2024 - 10 años de Correla Voz"
+      },
+      {
+        "type": "text",
+        "content": "Hemos crecido, aprendido y evolucionado, pero nuestra esencia sigue intacta: el amor por el carnaval, la amistad incondicional y la necesidad de cantar lo que sentimos. Cada año, cada espectáculo, es un nuevo capítulo en esta historia que escribimos juntos, con el público como protagonista."
+      }
+    ],
+    "rehearsalSchedule": "Sábados de 16hs a 18hs",
+    "rehearsalLocation": "Plaza del Tanque",
+    "rehearsalLocationUrl": "https://maps.app.goo.gl/e6hdUqDFEDZTm1wHA",
+    "nextRehearsalInfo": "Te esperamos ¡Vení a compartir con nosotros!"
+  }
+}
