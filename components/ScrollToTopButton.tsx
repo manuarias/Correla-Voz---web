@@ -6,7 +6,7 @@ interface Particle {
   colorClass: string;
 }
 
-const PARTICLE_COUNT = 70; 
+const PARTICLE_COUNT = 70;
 const COLORS = ['bg-red-400', 'bg-orange-400', 'bg-green-400', 'bg-blue-400', 'bg-yellow-300'];
 
 const ScrollToTopButton: React.FC = () => {
@@ -29,6 +29,9 @@ const ScrollToTopButton: React.FC = () => {
       const angle = Math.random() * 360;
       const distance = Math.random() * 90 + 70;
       const size = Math.random() * 5 + 3;
+      const x = distance * Math.cos(angle * Math.PI / 180);
+      const y = distance * Math.sin(angle * Math.PI / 180);
+
       return {
         id: Math.random(),
         colorClass: COLORS[Math.floor(Math.random() * COLORS.length)],
@@ -37,19 +40,21 @@ const ScrollToTopButton: React.FC = () => {
           left: '50%',
           width: `${size}px`,
           height: `${size}px`,
-          '--transform-end': `translate(${distance * Math.cos(angle * Math.PI / 180)}px, ${distance * Math.sin(angle * Math.PI / 180)}px) translate(-50%, -50%)`,
-        },
+          marginTop: `-${size / 2}px`,
+          marginLeft: `-${size / 2}px`,
+          '--transform-end': `translate(${x}px, ${y}px)`,
+        } as React.CSSProperties & { [key: string]: any },
       };
     });
     setParticles(newParticles);
-    
+
     setTimeout(() => {
-        setParticles([]);
-        setExplosionStyle({ opacity: 0, pointerEvents: 'none' });
-        setIsAnimating(false); // Reset animation state after explosion is done
+      setParticles([]);
+      setExplosionStyle({ opacity: 0, pointerEvents: 'none' });
+      setIsAnimating(false); // Reset animation state after explosion is done
     }, 1000); // Matches particle animation duration
   };
-  
+
   const toggleVisibility = () => {
     if (window.scrollY > window.innerHeight / 2 && !isAnimating) {
       setIsVisible(true);
@@ -90,9 +95,9 @@ const ScrollToTopButton: React.FC = () => {
         requestAnimationFrame(animationStep);
       } else {
         if (rocketContainerRef.current) {
-            rocketContainerRef.current.style.opacity = '0';
+          rocketContainerRef.current.style.opacity = '0';
         }
-        
+
         setExplosionStyle({
           position: 'fixed',
           // Position explosion where rocket ends
@@ -102,7 +107,7 @@ const ScrollToTopButton: React.FC = () => {
           opacity: 1,
           zIndex: 50,
         });
-        
+
         createExplosion();
       }
     };
@@ -121,9 +126,8 @@ const ScrollToTopButton: React.FC = () => {
         <button
           type="button"
           onClick={handleClick}
-          className={`w-12 h-12 flex items-center justify-center rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-300 ease-in-out ${
-            (isVisible && !isAnimating) ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
-          }`}
+          className={`w-12 h-12 flex items-center justify-center rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-300 ease-in-out ${(isVisible && !isAnimating) ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
+            }`}
           aria-label="Volver arriba"
           title="Volver arriba"
         >
