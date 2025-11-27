@@ -74,7 +74,7 @@ export default {
                     '100%': { transform: 'translate(-50%, 25px) scale(0)', opacity: '0' },
                 },
                 'particle-fly': {
-                    '0%': { transform: 'translate(-50%, -50%) scale(1)', opacity: '1' },
+                    '0%': { transform: 'translate(0, 0) scale(1)', opacity: '1' },
                     '100%': { transform: 'var(--transform-end)', opacity: '0' },
                 },
                 'fall': {
