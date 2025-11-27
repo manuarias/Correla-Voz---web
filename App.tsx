@@ -26,9 +26,9 @@ const App: React.FC = () => {
         setConfig(data);
       } catch (e) {
         if (e instanceof Error) {
-            setError(`Failed to load configuration: ${e.message}`);
+          setError(`Failed to load configuration: ${e.message}`);
         } else {
-            setError('An unknown error occurred while loading configuration.');
+          setError('An unknown error occurred while loading configuration.');
         }
       } finally {
         setLoading(false);
@@ -67,15 +67,15 @@ const App: React.FC = () => {
       <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
         <LinksSection links={config.importantLinks} />
 
-        <div className="pt-12 md:pt-16">
+        <div className="pt-20">
           <AboutSection data={config.aboutSection} />
         </div>
-        
-        <div className="pt-12 md:pt-16">
+
+        <div className="pt-20">
           <CalendarSection events={config.calendarEvents} />
         </div>
 
-        <div className="pt-12 md:pt-16">
+        <div className="pt-20">
           <PhotosSection albums={config.photoAlbums} />
         </div>
       </main>
