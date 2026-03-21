@@ -6,11 +6,13 @@ const Header: React.FC = () => {
       id="hero-header"
       className="relative text-white text-center flex flex-col justify-center items-center h-[50vh] md:h-[60vh] overflow-hidden"
     >
-      <img
-        src="https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/heroImg.jpg"
-        alt="Murga Correla Voz en el escenario"
-        className="absolute inset-0 w-full h-full object-cover animate-kenburns"
-      />
+      <div aria-hidden="true" className="absolute inset-0 w-full h-full">
+        <img
+          src="https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/heroImg.jpg"
+          alt=""
+          className="w-full h-full object-cover animate-kenburns"
+        />
+      </div>
       <div className="absolute inset-0 bg-black/60"></div>
       <div className="relative z-10 p-4">
         <h1 className="text-5xl md:text-7xl mb-4 animate-murga-glow">

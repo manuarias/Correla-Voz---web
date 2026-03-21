@@ -1,12 +1,11 @@
-import React from 'react';
-import { ICONS } from '../constants';
+import { Icon } from './ui/Icon';
 import type { SocialLinkItem } from '../types';
 
 interface FooterProps {
   socialLinks: SocialLinkItem[];
 }
 
-const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
+function Footer({ socialLinks }: FooterProps) {
   return (
     <footer className="bg-slate-900/50 border-t border-slate-800 mt-12 py-8">
       <div className="container mx-auto px-4 text-center text-slate-400">
@@ -20,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               aria-label={`Seguir en ${link.name}`}
               className="hover:text-red-400 transition-colors duration-300"
             >
-              {ICONS[link.name]}
+              <Icon name={link.name} />
             </a>
           ))}
         </div>
