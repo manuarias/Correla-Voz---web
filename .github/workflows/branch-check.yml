@@ -1,0 +1,19 @@
+name: Branch Check
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate branch name
+        run: |
+          branch=${{ github.head_ref }}
+          pattern='^(main|develop|feature/|release/|hotfix/|docs/)'
+          if ! echo "$branch" | grep -Eq "$pattern"; then
+            echo "Branch name must follow Gitflow convention!"
+            echo "Valid: feature/123-desc, docs/update, hotfix/123-fix"
+            exit 1
+          fi
