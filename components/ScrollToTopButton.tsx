@@ -118,7 +118,7 @@ const ScrollToTopButton: React.FC = () => {
   useEffect(() => {
     window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
-  }, [isAnimating]);
+  }, []);
 
   return (
     <>
@@ -153,7 +153,7 @@ const ScrollToTopButton: React.FC = () => {
         {particles.map((p) => (
           <div
             key={p.id}
-            className={`particle-explosion ${p.colorClass}`}
+            className={`absolute rounded-full pointer-events-none animate-particle-fly will-change-transform will-change-opacity ${p.colorClass}`}
             style={p.style}
           />
         ))}

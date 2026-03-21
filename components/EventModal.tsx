@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 import type { EventItem } from '../types';
 
 interface EventModalProps {
@@ -8,7 +9,9 @@ interface EventModalProps {
 }
 
 const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
-  React.useEffect(() => {
+  const containerRef = useFocusTrap(true);
+
+  useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
@@ -20,7 +23,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
     };
   }, [onClose]);
 
-  const googleCalendarUrl = React.useMemo(() => {
+  const googleCalendarUrl = useMemo(() => {
     const baseUrl = 'https://www.google.com/calendar/render?action=TEMPLATE';
     const title = encodeURIComponent(event.title);
     const details = encodeURIComponent(event.description);
@@ -68,7 +71,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
     return `${baseUrl}&text=${title}&dates=${datesParam}&details=${details}&location=${location}&ctz=${timezone}`;
   }, [event]);
 
-  const showAddToCalendar = React.useMemo(() => {
+  const showAddToCalendar = useMemo(() => {
     const parseEventDate = (eventItem: EventItem): Date => {
       const [year, month, day] = eventItem.date.split('-').map(Number);
       let hours = 0;
@@ -107,6 +110,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
       aria-labelledby="event-modal-title"
     >
       <div 
+        ref={containerRef}
         className="bg-slate-800 rounded-xl shadow-2xl shadow-red-500/10 w-full max-w-md border border-slate-700 transform transition-all duration-300 ease-in-out scale-95 animate-modal-enter"
         onClick={(e) => e.stopPropagation()}
       >
