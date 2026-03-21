@@ -23,7 +23,7 @@ const ConfettiBackground: React.FC = () => {
       {confettiPieces.map(piece => (
         <div
           key={piece.id}
-          className={`confetti-piece ${piece.colorClass}`}
+          className={`fixed top-[-20px] w-1.5 h-2.5 animate-fall will-change-transform will-change-opacity ${piece.colorClass}`}
           style={piece.style}
         />
       ))}
