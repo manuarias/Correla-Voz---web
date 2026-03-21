@@ -1,7 +1,3 @@
-<div align="center">
-<img width="1200" height="475" alt="Correla Voz" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
 # Correla Voz 🌟
 
 El sitio web oficial de **Correla Voz**, una murga comunitaria de Tandil, Buenos Aires, Argentina. Un espacio para compartir eventos, ensayos, fotos y conocer más sobre nuestra historia.
