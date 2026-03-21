@@ -18,6 +18,9 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -49,7 +52,7 @@ jobs:
         run: |
           branch=${GITHUB_REF#refs/heads/}
           if [[ "$branch" == release/* ]]; then
-            VERSION=${branch#release/}
+            VERSION=${branch#release/v}
           else
             VERSION=${GITHUB_SHA:0:7}
           fi
