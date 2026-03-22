@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -7,12 +7,15 @@ on:
       - '**.md'
       - 'docs/**'
       - '.gitignore'
+      - '.agents/**'
   pull_request:
+    types: [opened, synchronize, reopened, closed]
     branches: [main, develop]
     paths-ignore:
       - '**.md'
       - 'docs/**'
       - '.gitignore'
+      - '.agents/**'
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -20,9 +23,12 @@ concurrency:
 
 permissions:
   contents: write
+  pull-requests: write # Permiso necesario para que el bot pueda crear el PR
 
 jobs:
   build:
+    # Evitamos que el build corra cuando el PR se cierra (el push a main ya dispara un build)
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     
@@ -35,27 +41,35 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+      - run: npm run lint
       - run: npm run build
 
   release:
-    needs: build
+    # Ejecutar solo si:
+    # 1. Es un evento de PR
+    # 2. El PR fue cerrado
+    # 3. El PR fue mergeado
+    # 4. Se mergeó hacia la rama 'main'
+    # 5. La rama de origen comenzaba con 'release/'
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.base_ref == 'main' && startsWith(github.head_ref, 'release/')
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
     steps:
+      # Hacemos checkout explícito de 'main' ya que el PR se acaba de mergear ahí
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
       - name: Extract version
         id: version
         run: |
-          branch=${GITHUB_REF#refs/heads/}
-          if [[ "$branch" == release/* ]]; then
-            VERSION=${branch#release/v}
-          else
-            VERSION=${GITHUB_SHA:0:7}
-          fi
+          # github.head_ref es la rama origen, ej: release/v1.0.0 o release/1.0.0
+          BRANCH="${{ github.head_ref }}"
+          # Quitamos el prefijo 'release/'
+          VERSION=${BRANCH#release/}
+          # Si le pusieron una 'v' al número (ej v1.0.0), la quitamos para que no quede 'vv1.0.0'
+          VERSION=${VERSION#v}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
@@ -67,3 +81,25 @@ jobs:
           draft: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Automate Backport PR to develop
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          BACKPORT_BRANCH="backport/v${VERSION}"
+          
+          # Configuramos un usuario de git genérico de actions bot
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Creamos la rama desde el estado actual de main y la subimos
+          git checkout -b "$BACKPORT_BRANCH"
+          git push -u origin "$BACKPORT_BRANCH"
+          
+          # Usamos GitHub CLI para crear el PR contra develop
+          gh pr create \
+            --base develop \
+            --head "$BACKPORT_BRANCH" \
+            --title "chore: backport release v${VERSION} to develop" \
+            --body "Este PR fue generado automáticamente al lanzar el release \`v${VERSION}\`. Mergea este PR para mantener \`develop\` sincronizado con \`main\` y actualizar el historial."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
