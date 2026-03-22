@@ -43,7 +43,7 @@ const ScrollToTopButton: React.FC = () => {
           marginTop: `-${size / 2}px`,
           marginLeft: `-${size / 2}px`,
           '--transform-end': `translate(${x}px, ${y}px)`,
-        } as React.CSSProperties & { [key: string]: any },
+        } as React.CSSProperties & Record<string, string | number>,
       };
     });
     setParticles(newParticles);
