@@ -108,6 +108,12 @@ As mentioned above, there are no tests in this project. When adding features or 
 11. **Push & PR**: Push commits and create PR to `develop`, link the issue
 12. **Move to In Review**: When PR is created and checks pass, move the task to "In Review" column
 
+### Task Status Rules
+
+- **Ready** → **In Progress**: Agent moves when starting a task
+- **In Progress** → **In Review**: Agent moves when PR is ready (all checks passing)
+- **In Review** → **Done**: Only the user can move this (after reviewing and merging)
+
 ### Questions
 
 - If any step is unclear, ask the user before proceeding
