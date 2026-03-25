@@ -96,13 +96,17 @@ As mentioned above, there are no tests in this project. When adding features or 
 ### Implementation Process
 
 1. **Verify**: Confirm the task is in "Ready" column before starting
-2. **Create branch**: Create branch from `develop` with format `issue/{issue-number}/{short-description>`
-3. **Analyze & Plan**: Understand requirements, check relevant skills, consider edge cases
-4. **Implement**: Use TDD when possible - write tests first, then code
-5. **Test**: Run tests to verify the solution
-6. **Build**: Run `npm run build` to ensure nothing is broken
-7. **Commit**: Create meaningful commits describing what and why
-8. **Push & PR**: Push commits and create PR to `develop`, link the issue
+2. **Move to In Progress**: When starting work, move the task to "In Progress" column
+3. **Create branch**: Create branch from `develop` with format `chore/{issue-number}/{short-description}`
+4. **Analyze & Plan**: Understand requirements, check relevant skills, consider edge cases
+5. **Implement**: Use TDD when possible - write tests first, then code
+6. **Test**: Run tests to verify the solution
+7. **Build**: Run `npm run build` to ensure nothing is broken
+8. **Commit**: Create meaningful commits describing what and why
+9. **Present Changes**: Before creating PR, present all changes and explanation to user for review
+10. **Wait for Approval**: Only proceed with PR after user explicitly approves the changes
+11. **Push & PR**: Push commits and create PR to `develop`, link the issue
+12. **Move to In Review**: When PR is created and checks pass, move the task to "In Review" column
 
 ### Questions
 
