@@ -102,11 +102,12 @@ As mentioned above, there are no tests in this project. When adding features or 
 5. **Implement**: Use TDD when possible - write tests first, then code
 6. **Test**: Run tests to verify the solution
 7. **Build**: Run `npm run build` to ensure nothing is broken
-8. **Commit**: Create meaningful commits describing what and why
-9. **Present Changes**: Before creating PR, present all changes and explanation to user for review
-10. **Wait for Approval**: Only proceed with PR after user explicitly approves the changes
-11. **Push & PR**: Push commits and create PR to `develop`, link the issue
-12. **Move to In Review**: When PR is created and checks pass, move the task to "In Review" column
+8. **Lint**: Run `npm run lint` to ensure code quality
+9. **Commit**: Create meaningful commits describing what and why
+10. **Present Changes**: Before creating PR, present all changes and explanation to user for review
+11. **Wait for Approval**: Only proceed with PR after user explicitly approves the changes
+12. **Push & PR**: Push commits and create PR to `develop`, link the issue
+13. **Move to In Review**: When PR is created and checks pass, move the task to "In Review" column
 
 ### Task Status Rules
 
