@@ -85,3 +85,42 @@ npm test -- <path/to/test/file>
 ## Testing
 
 As mentioned above, there are no tests in this project. When adding features or fixing bugs, consider adding tests to ensure the stability of the codebase. Use Vitest as the testing framework and React Testing Library for testing components.
+
+### Test Code Quality
+
+- **Don't assume code is correct**: If tests fail, the implementation code might be wrong
+- **Review the code**: When tests fail, analyze the implementation to determine if the bug is in the test or the code
+- **Ask before changing implementation**: If you find a bug in the code, ask the user before fixing it
+
+## Workflow
+
+### Task Management
+
+- Only take tasks from the **"Ready"** column in GitHub Projects
+- Never take tasks directly from the "Backlog" column
+
+### Implementation Process
+
+1. **Verify**: Confirm the task is in "Ready" column before starting
+2. **Move to In Progress**: When starting work, move the task to "In Progress" column
+3. **Create branch**: Create branch from `develop` with format `chore/{issue-number}/{short-description}`
+4. **Analyze & Plan**: Understand requirements, check relevant skills, consider edge cases
+5. **Implement**: Use TDD when possible - write tests first, then code
+6. **Test**: Run tests to verify the solution
+7. **Build**: Run `npm run build` to ensure nothing is broken
+8. **Lint**: Run `npm run lint` to ensure code quality
+9. **Commit**: Create meaningful commits describing what and why
+10. **Present Changes**: Before creating PR, present all changes and explanation to user for review
+11. **Wait for Approval**: Only proceed with PR after user explicitly approves the changes
+12. **Push & PR**: Push commits and create PR to `develop`, link the issue
+13. **Move to In Review**: When PR is created and checks pass, move the task to "In Review" column
+
+### Task Status Rules
+
+- **Ready** → **In Progress**: Agent moves when starting a task
+- **In Progress** → **In Review**: Agent moves when PR is ready (all checks passing)
+- **In Review** → **Done**: Only the user can move this (after reviewing and merging)
+
+### Questions
+
+- If any step is unclear, ask the user before proceeding

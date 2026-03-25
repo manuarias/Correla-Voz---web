@@ -22,7 +22,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ data }) => {
         {/* Reseña */}
         <div className="text-center max-w-4xl mx-auto">
           <p className="text-lg md:text-xl text-slate-300 italic leading-relaxed">
-            "{data.review}"
+            &ldquo;{data.review}&rdquo;
           </p>
         </div>
 

@@ -11,9 +11,9 @@ jobs:
       - name: Validate branch name
         run: |
           branch=${{ github.head_ref }}
-          pattern='^(main|develop|feature/|release/|hotfix/|docs/)'
+          pattern='^(main|develop|feature/|release/|hotfix/|docs/|chore/|backport/)'
           if ! echo "$branch" | grep -Eq "$pattern"; then
             echo "Branch name must follow Gitflow convention!"
-            echo "Valid: feature/123-desc, docs/update, hotfix/123-fix"
+            echo "Valid: feature/123-desc, docs/update, hotfix/123-fix, chore/desc, backport/v1.0.0"
             exit 1
           fi
