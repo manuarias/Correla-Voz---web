@@ -86,6 +86,12 @@ npm test -- <path/to/test/file>
 
 As mentioned above, there are no tests in this project. When adding features or fixing bugs, consider adding tests to ensure the stability of the codebase. Use Vitest as the testing framework and React Testing Library for testing components.
 
+### Test Code Quality
+
+- **Don't assume code is correct**: If tests fail, the implementation code might be wrong
+- **Review the code**: When tests fail, analyze the implementation to determine if the bug is in the test or the code
+- **Ask before changing implementation**: If you find a bug in the code, ask the user before fixing it
+
 ## Workflow
 
 ### Task Management
