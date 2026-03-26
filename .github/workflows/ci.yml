@@ -51,12 +51,11 @@ jobs:
     # 2. El PR fue cerrado
     # 3. El PR fue mergeado
     # 4. Se mergeó hacia la rama 'main'
-    # 5. La rama de origen comenzaba con 'release/'
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.base_ref == 'main' && startsWith(github.head_ref, 'release/')
+    # 5. La rama de origen era 'release/*' o 'hotfix/*'
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.base_ref == 'main' && (startsWith(github.head_ref, 'release/') || startsWith(github.head_ref, 'hotfix/'))
     runs-on: ubuntu-latest
     
     steps:
-      # Hacemos checkout explícito de 'main' ya que el PR se acaba de mergear ahí
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -65,15 +64,23 @@ jobs:
       - name: Extract version
         id: version
         run: |
-          # github.head_ref es la rama origen, ej: release/v1.0.0 o release/1.0.0
           BRANCH="${{ github.head_ref }}"
-          # Quitamos el prefijo 'release/'
+          # Detect branch type
+          if [[ "$BRANCH" == release/* ]]; then
+            TYPE="release"
+          else
+            TYPE="hotfix"
+          fi
+          echo "type=$TYPE" >> $GITHUB_OUTPUT
+          
+          # Extract version from branch name
           VERSION=${BRANCH#release/}
-          # Si le pusieron una 'v' al número (ej v1.0.0), la quitamos para que no quede 'vv1.0.0'
+          VERSION=${VERSION#hotfix/}
           VERSION=${VERSION#v}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
+        if: steps.version.outputs.type == 'release'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.version.outputs.version }}
@@ -86,21 +93,36 @@ jobs:
       - name: Automate Backport PR to develop
         run: |
           VERSION="${{ steps.version.outputs.version }}"
+          TYPE="${{ steps.version.outputs.type }}"
           BACKPORT_BRANCH="backport/v${VERSION}"
           
           # Configuramos un usuario de git genérico de actions bot
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-          # Creamos la rama desde el estado actual de main y la subimos
+          # Fetch develop as base (not main!)
+          git fetch origin develop:develop
+          git checkout develop
           git checkout -b "$BACKPORT_BRANCH"
+          
+          if [ "$TYPE" = "release" ]; then
+            # RELEASE: Cherry-pick only the version bump commit (latest commit)
+            git cherry-pick HEAD --no-commit
+          else
+            # HOTFIX: Cherry-pick commits not in main
+            MAIN_SHA=$(git rev-parse main)
+            git log --not $MAIN_SHA --format=%H | xargs -I {} git cherry-pick {} --no-commit
+          fi
+          
+          git add -A
+          git commit -m "chore: backport v${VERSION} to develop"
           git push -u origin "$BACKPORT_BRANCH"
           
           # Usamos GitHub CLI para crear el PR contra develop
           gh pr create \
             --base develop \
             --head "$BACKPORT_BRANCH" \
-            --title "chore: backport release v${VERSION} to develop" \
+            --title "chore: backport v${VERSION} to develop" \
             --body "Este PR fue generado automáticamente al lanzar el release \`v${VERSION}\`. Mergea este PR para mantener \`develop\` sincronizado con \`main\` y actualizar el historial."
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
