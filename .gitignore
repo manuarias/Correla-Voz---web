@@ -32,3 +32,6 @@ dist-ssr
 # Caches
 .eslintcache
 *.tsbuildinfo
+
+# Test coverage
+coverage
