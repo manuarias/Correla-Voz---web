@@ -84,7 +84,7 @@ npm test -- <path/to/test/file>
 
 ## Testing
 
-As mentioned above, there are no tests in this project. When adding features or fixing bugs, consider adding tests to ensure the stability of the codebase. Use Vitest as the testing framework and React Testing Library for testing components.
+Tests are written with Vitest and React Testing Library. Run all tests with `npm test`.
 
 ### Test Code Quality
 
@@ -103,7 +103,7 @@ As mentioned above, there are no tests in this project. When adding features or 
 
 1. **Verify**: Confirm the task is in "Ready" column before starting
 2. **Move to In Progress**: When starting work, move the task to "In Progress" column
-3. **Create branch**: Create branch from `develop` with format `chore/{issue-number}/{short-description}`
+3. **Create branch**: Create branch from `develop` with format `chore/{issue}-{brief-description}`
 4. **Analyze & Plan**: Understand requirements, check relevant skills, consider edge cases
 5. **Implement**: Use TDD when possible - write tests first, then code
 6. **Test**: Run tests to verify the solution
