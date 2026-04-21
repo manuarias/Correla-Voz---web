@@ -1,7 +1,12 @@
-
-import React, { useEffect, useMemo } from 'react';
-import { useFocusTrap } from '../hooks/useFocusTrap';
+import React, { useMemo } from 'react';
 import type { EventItem } from '../types';
+import {
+  Dialog,
+  DialogOverlay,
+  DialogContent,
+  DialogTitle,
+} from './ui/dialog';
+import { Button } from './ui/button';
 
 interface EventModalProps {
   event: EventItem;
@@ -9,20 +14,6 @@ interface EventModalProps {
 }
 
 const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
-  const containerRef = useFocusTrap(true);
-
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleEsc);
-    return () => {
-      window.removeEventListener('keydown', handleEsc);
-    };
-  }, [onClose]);
-
   const googleCalendarUrl = useMemo(() => {
     const baseUrl = 'https://www.google.com/calendar/render?action=TEMPLATE';
     const title = encodeURIComponent(event.title);
@@ -102,60 +93,53 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
 
 
   return (
-    <div 
-      className="fixed inset-0 bg-black/70 z-50 flex justify-center items-center p-4"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="event-modal-title"
-    >
-      <div 
-        ref={containerRef}
-        className="bg-slate-800 rounded-xl shadow-2xl shadow-red-500/10 w-full max-w-md border border-slate-700 transform transition-all duration-300 ease-in-out scale-95 animate-modal-enter"
-        onClick={(e) => e.stopPropagation()}
+    <Dialog open={true} onClose={onClose}>
+      <DialogOverlay />
+      <DialogContent 
+        aria-labelledby="event-modal-title"
+        className="relative overflow-hidden"
       >
-        <div className="p-6 relative">
-          <button 
-            onClick={onClose} 
-            className="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors"
-            aria-label="Cerrar modal"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          </button>
-          
-          <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0 flex flex-col items-center justify-center text-center bg-slate-700/50 rounded-lg p-3 w-16">
-                <span className="text-3xl font-bold text-red-500">{event.day}</span>
-                <span className="text-sm font-semibold text-slate-400">{event.month}</span>
-            </div>
-            <div className="flex-grow">
-                <h3 id="event-modal-title" className="font-bold text-xl text-murga-turquoise mb-1">{event.title}</h3>
-                <p className="text-sm text-slate-400 mb-1">{event.location}</p>
-                {event.time && <p className="text-sm text-slate-400">{event.time}</p>}
-            </div>
+        <Button 
+          variant="ghost" 
+          size="icon"
+          onClick={onClose} 
+          aria-label="Cerrar modal"
+          className="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </Button>
+        
+        <div className="flex items-start space-x-4">
+          <div className="flex-shrink-0 flex flex-col items-center justify-center text-center bg-slate-700/50 rounded-lg p-3 w-16">
+              <span className="text-3xl font-bold text-red-500">{event.day}</span>
+              <span className="text-sm font-semibold text-slate-400">{event.month}</span>
           </div>
-
-          <div className="mt-4 pt-4 border-t border-slate-700">
-            <p className="text-slate-300 whitespace-pre-wrap">{event.description}</p>
+          <div className="flex-grow">
+              <DialogTitle id="event-modal-title">{event.title}</DialogTitle>
+              <p className="text-sm text-slate-400 mb-1">{event.location}</p>
+              {event.time && <p className="text-sm text-slate-400">{event.time}</p>}
           </div>
-
-          {showAddToCalendar && (
-            <div className="mt-6 text-center">
-              <a
-                  href={googleCalendarUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300"
-              >
-                  <svg className="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zM9 18H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
-                  Agregar a Google Calendar
-              </a>
-            </div>
-          )}
-
         </div>
-      </div>
-    </div>
+
+        <div className="mt-4 pt-4 border-t border-slate-700">
+          <p className="text-slate-300 whitespace-pre-wrap">{event.description}</p>
+        </div>
+
+        {showAddToCalendar && (
+          <div className="mt-6 text-center">
+            <a
+                href={googleCalendarUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300"
+            >
+                <svg className="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zM9 18H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
+                Agregar a Google Calendar
+            </a>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 };
 
