@@ -1,13 +1,37 @@
 @import "tailwindcss";
 
 @theme {
+  /* Brand tokens */
+  --color-murga-red: #e53e3e;
   --color-murga-turquoise: #42a9c2;
+  --color-murga-black: #000000;
+  --color-murga-white: #ffffff;
 
+  /* Semantic tokens */
+  --color-primary: var(--color-murga-red);
+  --color-accent: var(--color-murga-turquoise);
+  --color-surface: var(--color-murga-black);
+  --color-text-primary: var(--color-murga-white);
+  --color-surface-border: #1e293b;
+
+  /* Font tokens */
   --font-family-sans: 'Inter', system-ui, sans-serif;
   --font-family-rye: 'Rye', cursive;
   --font-family-bungee: 'Bungee', cursive;
   --font-family-wc-mano-negra: 'WC Mano Negra Bta', sans-serif;
 
+  --font-heading-primary: var(--font-family-rye);
+  --font-heading-secondary: var(--font-family-wc-mano-negra);
+  --font-heading-tertiary: var(--font-family-bungee);
+  --font-body: var(--font-family-sans);
+
+  /* Shadow tokens */
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-button: 0 2px 4px rgb(0 0 0 / 0.3);
+  --shadow-glow-red: 0 0 15px rgba(229, 62, 62, 0.5);
+  --shadow-glow-turquoise: 0 0 15px rgba(66, 169, 194, 0.5);
+
+  /* Animation tokens */
   --animate-modal-enter: modal-enter 0.2s ease-out forwards;
   --animate-kenburns: kenburns 40s ease-in-out infinite alternate;
   --animate-text-enter-delay: text-enter 1s ease-out 0.8s forwards;
