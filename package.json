@@ -30,6 +30,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^4.1.1",
     "autoprefixer": "^10.4.22",
+    "class-variance-authority": "^0.7.1",
     "eslint-plugin-react": "^7.37.5",
     "jsdom": "^29.0.1",
     "postcss": "^8.5.6",
