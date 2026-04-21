@@ -1,6 +1,8 @@
 
 import React, { useState, useMemo } from 'react';
 import Section from './Section';
+import { Card } from './ui/card';
+import { Badge } from './ui/badge';
 import type { EventItem } from '../types';
 import EventModal from './EventModal';
 
@@ -64,10 +66,11 @@ const CalendarSection: React.FC<CalendarSectionProps> = ({ events }) => {
             processedEvents.map((event, index) => {
               const isNextEvent = event === nextEvent;
               return (
-                <button
+                <Card
+                  as="button"
                   key={`${event.date}-${event.title}-${index}`}
                   onClick={() => setSelectedEvent(event)}
-                  className={`w-full text-left flex items-center bg-slate-800/50 p-4 rounded-lg border transition-all duration-300 cursor-pointer hover:bg-slate-800 focus:outline-none relative overflow-hidden ${
+                  className={`w-full text-left flex items-center p-4 transition-all duration-300 cursor-pointer hover:bg-slate-800 focus:outline-none relative overflow-hidden ${
                     isNextEvent
                       ? 'border-teal-400 ring-2 ring-teal-400 ring-offset-2 ring-offset-black'
                       : 'border-slate-700 hover:border-red-500 focus:ring-2 focus:ring-red-500'
@@ -75,9 +78,9 @@ const CalendarSection: React.FC<CalendarSectionProps> = ({ events }) => {
                   aria-label={`Ver detalles para ${event.title}`}
                 >
                   {isNextEvent && (
-                     <span className="absolute top-0 right-0 bg-teal-400 text-black text-xs font-bold px-2 py-1 rounded-bl-lg">
+                     <Badge className="absolute top-0 right-0 rounded-none rounded-bl-lg px-2 py-1">
                        Próximo
-                     </span>
+                     </Badge>
                   )}
                   <div className="flex flex-col items-center justify-center text-center pr-4 border-r border-slate-600">
                     <span className="text-3xl font-bold text-red-500">{event.day}</span>
@@ -92,14 +95,14 @@ const CalendarSection: React.FC<CalendarSectionProps> = ({ events }) => {
                       {event.time}
                     </div>
                   )}
-                </button>
+                </Card>
               );
             })
           ) : (
-            <div className="text-center text-slate-400 bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+            <Card className="text-center text-slate-400 p-6 border-slate-700">
               <p>No hay presentaciones programadas próximamente.</p>
               <p className="text-sm mt-2">¡Vuelve a consultar pronto para enterarte de las novedades!</p>
-            </div>
+            </Card>
           )}
         </div>
       </Section>
