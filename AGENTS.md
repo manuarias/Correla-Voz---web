@@ -103,16 +103,16 @@ Tests are written with Vitest and React Testing Library. Run all tests with `npm
 
 1. **Verify**: Confirm the task is in "Ready" column before starting
 2. **Move to In Progress**: When starting work, move the task to "In Progress" column
-3. **Create branch**: Create branch from `develop` with format `chore/{issue}-{brief-description}`
+3. **Create branch**: Create branch from `develop` with format `<type>/{issue}-{brief-description}`. The issue number is optional (e.g., `chore/123-fix-login` or `chore/fix-login`).
 4. **Analyze & Plan**: Understand requirements, check relevant skills, consider edge cases
 5. **Implement**: Use TDD when possible - write tests first, then code
 6. **Test**: Run tests to verify the solution
 7. **Build**: Run `npm run build` to ensure nothing is broken
 8. **Lint**: Run `npm run lint` to ensure code quality
 9. **Commit**: Create meaningful commits describing what and why
-10. **Present Changes**: Before creating PR, present all changes and explanation to user for review
-11. **Wait for Approval**: Only proceed with PR after user explicitly approves the changes
-12. **Push & PR**: Push commits and create PR to `develop`, link the issue
+10. **Push & PR**: Push commits and create PR to `develop`, link the issue
+11. **Present Changes**: Present the PR to the user with a summary of changes and explanation
+12. **Wait for Approval**: Only merge after user explicitly approves. **NEVER merge without direct user instruction.**
 13. **Move to In Review**: When PR is created and checks pass, move the task to "In Review" column
 
 ### Task Status Rules
