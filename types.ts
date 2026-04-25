@@ -40,6 +40,7 @@ export interface AboutSectionData {
 }
 
 export interface ConfigData {
+    heroText: string;
     importantLinks: LinkItem[];
     calendarEvents: EventItem[];
     photoAlbums: AlbumItem[];
