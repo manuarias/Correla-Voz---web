@@ -1,4 +1,5 @@
 {
+  "heroText": "Somos una práctica de memoria colectiva. Cantamos, bailamos y hacemos murga entre todes. Porque la murga que construimos es movimiento, historia y alegría compartida. Somos un sentimiento que se baila, la tierra que zapatea y la mariposa de colores sobre un traje gris. Hacemos murga.",
   "importantLinks": [
     { "title": "Seguir en Instagram", "url": "https://www.instagram.com/correla_voz/", "iconName": "instagram" },
     { "title": "Ver en YouTube", "url": "https://youtu.be/EkqDewCIcWk?si=kD4mQs2jEB9yVCz4", "iconName": "youtube" },
@@ -24,11 +25,11 @@
       { "name": "spotify", "url": "https://open.spotify.com/track/6ABWoKbJW5wBPkRBvGr6e7?si=a58c9d2796a94586" }
   ],
   "aboutSection": {
-    "review": "Somos más que una murga; somos un colectivo que respira carnaval. Nacimos en las calles de Montevideo con el bombo como latido y la crítica como bandera. Correla Voz es el grito de los que no tienen voz, una explosión de color, música y poesía que busca sacudir el alma y despertar conciencias. Cada actuación es un ritual, una fiesta popular donde la alegría y el compromiso se abrazan.",
+    "review": "Somos lo que nos pasa por el cuerpo cuando cantamos, bailamos y hacemos murga. Somos el eco de una historia que no termina, pero también el golpe de tambor que la sigue escribiendo entre todes. Somos la mirada que nace de adentro, de la murga que hacemos, la que se va definiendo y construyendo día a día. Somos historias, relatos, costumbres y formas de cuidarnos. Infinitas formas de pensar, de tratarnos, de cuidarnos. Y somos también el estruendo de los bombos con platillo, el redoble que marca el paso, la voz que se alza para decir lo que otros callan. Somos murga, somos movimiento, y la hacemos entre todes.",
     "history": [
       {
         "type": "text",
-        "content": "Todo comenzó en 2013, en una esquina del barrio, con un puñado de amigos y un sueño compartido. Lo que empezó como ensayos improvisados se convirtió en una pasión que nos llevó a escenarios, desfiles y corazones por todo el país."
+        "content": "La murga Correla Voz es un proyecto artístico, social y cultural que nace en el año 2014 en la ciudad de Tandil. Un 31 de agosto, no más de 5 o 6 personas tuvieron ganas de animarse a murguear, a jugar, a conocer desde adentro el mundo del Carnaval y el género porteño. Se eligieron los colores blanco, rojo y turquesa —más adelante se sumó el negro— y el nombre que nos representa: una herramienta de expresión y comunicación para llevar nuestro arte popular a cada rincón."
       },
       {
         "type": "image",
@@ -37,12 +38,12 @@
       },
       {
         "type": "text",
-        "content": "Hemos crecido, aprendido y evolucionado, pero nuestra esencia sigue intacta: el amor por el carnaval, la amistad incondicional y la necesidad de cantar lo que sentimos. Cada año, cada espectáculo, es un nuevo capítulo en esta historia que escribimos juntos, con el público como protagonista."
+        "content": "En 2015 participamos por primera vez del Carnaval de Mi Tandil. Desde entonces, hemos estado presentes en corsos barriales, el CumpleCorso, el Rejunte, talleres en escuelas y centros culturales, marchas y encuentros feministas, el Día Nacional de la Memoria y el Encuentro de Murgueres. En 2019 abrimos la casita Correla, que junto a la Colectiva Berta Cáceres se transformó en el Periscopio Centro Cultural. La pandemia nos frenó, pero seguimos adelante. En 2024, en medio del festejo de nuestros 10 años, el Peris cerró... pero gracias a todes nosotres y a Dios Momo, el CumpleCorso fue una locura hermosa. Y acá seguimos, en 2026, celebrando 12 años de carnaval, con la misma pasión del primer día."
       }
     ],
     "rehearsalSchedule": "Sábados de 16hs a 18hs",
-    "rehearsalLocation": "Plaza del Tanque",
-    "rehearsalLocationUrl": "https://maps.app.goo.gl/e6hdUqDFEDZTm1wHA",
+    "rehearsalLocation": "Comercio (Secundaria N° 8)",
+    "rehearsalLocationUrl": "https://maps.app.goo.gl/Lztdjegojf14dRbH9",
     "nextRehearsalInfo": "Te esperamos ¡Vení a compartir con nosotros!"
   }
 }
