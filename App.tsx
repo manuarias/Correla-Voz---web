@@ -61,10 +61,19 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen text-gray-200 flex flex-col relative z-0">
-      <ConfettiBackground />
-      <Header heroText={config.heroText} />
-      <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
+    <>
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-red-600 focus:text-white focus:px-4 focus:py-2 focus:rounded"
+      >
+        Saltar al contenido principal
+      </a>
+      <div className="min-h-screen text-gray-200 flex flex-col relative z-0">
+        <ConfettiBackground />
+        <nav aria-label="Navegación principal">
+          <Header heroText={config.heroText} />
+        </nav>
+        <main id="main-content" className="flex-grow container mx-auto px-4 py-8 md:py-12">
         <LinksSection links={config.importantLinks} />
 
         <div className="pt-20">
@@ -79,9 +88,12 @@ const App: React.FC = () => {
           <PhotosSection albums={config.photoAlbums} />
         </div>
       </main>
-      <Footer socialLinks={config.socialLinks} />
+      <footer aria-label="Redes sociales">
+        <Footer socialLinks={config.socialLinks} />
+      </footer>
       <ScrollToTopButton />
     </div>
+    </>
   );
 };
 
