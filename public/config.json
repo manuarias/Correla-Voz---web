@@ -12,12 +12,12 @@
     { "date": "2026-02-16", "day": "18", "month": "FEV", "title": "Carnaval 2026 - día 3", "location": "Avenida del Encuentro", "time": "17:00 hs", "description": "Vení a compartir con nosotros El Carnaval, hacemos pasada con el Rejunte!" }
   ],
   "photoAlbums": [
-    { "title": "Tandilia 2025", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/tandilia2025.jpg", "albumUrl": "https://photos.app.goo.gl/2Mk5Bhqd7YbJwVoS9", "date": "15 de Noviembre, 2025" },
-    { "title": "Asadete Corrella Nov 2025", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/asadete.jpg", "albumUrl": "https://photos.app.goo.gl/JgzWGYsaw1PmeVcc9", "date": "09 de Noviembre, 2025" },
-    { "title": "Cumplecorso Atrapasueños 2025", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/atrapa.jpg", "albumUrl": "https://photos.app.goo.gl/VE1QCzKrB7M3uvoQ8", "date": "18 de Octubre, 2025" },
-    { "title": "Cumplecorso Correla 11 años 2025", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/cumplecorso2025.jpg", "albumUrl": "https://photos.app.goo.gl/CXPratfVxbe1f2NE9", "date": "20 de Septiembre, 2025" },
-    { "title": "Cumplecorso Atrapasueños 2024", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/CumpleAtrapa2024.jpg", "albumUrl": "https://photos.app.goo.gl/h4hwVMfAnhHR37W7A", "date": "05 de Octubre, 2024" },
-    { "title": "Cumplecorso Correla 10 años 2024", "imageUrl": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/albums/correlaCumple2024.jpg", "albumUrl": "https://photos.app.goo.gl/tdFYXqhBCsvsk4gz5", "date": "14 de Septiembre, 2024" }
+    { "title": "Tandilia 2025", "imageUrl": "/images/albums/tandilia2025.jpg", "albumUrl": "https://photos.app.goo.gl/2Mk5Bhqd7YbJwVoS9", "date": "15 de Noviembre, 2025" },
+    { "title": "Asadete Corrella Nov 2025", "imageUrl": "/images/albums/asadete.jpg", "albumUrl": "https://photos.app.goo.gl/JgzWGYsaw1PmeVcc9", "date": "09 de Noviembre, 2025" },
+    { "title": "Cumplecorso Atrapasueños 2025", "imageUrl": "/images/albums/atrapa.jpg", "albumUrl": "https://photos.app.goo.gl/VE1QCzKrB7M3uvoQ8", "date": "18 de Octubre, 2025" },
+    { "title": "Cumplecorso Correla 11 años 2025", "imageUrl": "/images/albums/cumplecorso2025.jpg", "albumUrl": "https://photos.app.goo.gl/CXPratfVxbe1f2NE9", "date": "20 de Septiembre, 2025" },
+    { "title": "Cumplecorso Atrapasueños 2024", "imageUrl": "/images/albums/cumple-atrapa2024.jpg", "albumUrl": "https://photos.app.goo.gl/h4hwVMfAnhHR37W7A", "date": "05 de Octubre, 2024" },
+    { "title": "Cumplecorso Correla 10 años 2024", "imageUrl": "/images/albums/correla-cumple2024.jpg", "albumUrl": "https://photos.app.goo.gl/tdFYXqhBCsvsk4gz5", "date": "14 de Septiembre, 2024" }
   ],
   "socialLinks": [
       { "name": "instagram", "url": "https://www.instagram.com/correla_voz/" },
@@ -33,7 +33,7 @@
       },
       {
         "type": "image",
-        "src": "https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/historyCorrela.jpg",
+        "src": "/images/history.jpg",
         "alt": "Foto del cumplecorso 2024 - 10 años de Correla Voz"
       },
       {
