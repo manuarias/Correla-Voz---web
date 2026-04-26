@@ -42,12 +42,13 @@ const AboutSection: React.FC<AboutSectionProps> = ({ data }) => {
              {/* Image Column */}
              <div className="w-full lg:w-1/2 flex flex-col gap-6">
                  {imageBlocks.map((block, index) => (
-                    <img
-                        key={`hist-img-${index}`}
-                        src={block.src}
-                        alt={block.alt}
-                        className="rounded-lg shadow-lg shadow-red-500/20 object-cover w-full aspect-video transform transition-transform duration-500 hover:scale-105"
-                    />
+<img
+                         key={`hist-img-${index}`}
+                         src={block.src}
+                         alt={block.alt}
+                         loading="lazy"
+                         className="rounded-lg shadow-lg shadow-red-500/20 object-cover w-full aspect-video transform transition-transform duration-500 hover:scale-105"
+                     />
                  ))}
              </div>
           </div>
