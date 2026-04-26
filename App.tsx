@@ -63,7 +63,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen text-gray-200 flex flex-col relative z-0">
       <ConfettiBackground />
-      <Header />
+      <Header heroText={config.heroText} />
       <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
         <LinksSection links={config.importantLinks} />
 

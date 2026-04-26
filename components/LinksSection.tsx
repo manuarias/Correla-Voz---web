@@ -1,5 +1,6 @@
 
 import Section from './Section';
+import { Card } from './ui/card';
 import { Icon } from './ui/Icon';
 import type { LinkItem } from '../types';
 
@@ -12,12 +13,13 @@ function LinksSection({ links }: LinksSectionProps) {
     <Section title="Conócenos Más">
       <div className="flex flex-wrap justify-center gap-4 md:gap-6">
         {links.map((link) => (
-          <a
+          <Card
+            as="a"
             key={link.title}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-slate-800/50 border border-slate-700 rounded-lg p-4 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:border-red-500 hover:bg-red-900/30 w-40 md:w-60"
+            className="group p-4 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:border-red-500 hover:bg-red-900/30 w-40 md:w-60"
           >
             <div className="flex flex-col items-center justify-center h-full text-center">
               <div className="text-slate-300 group-hover:text-red-500 transition-colors duration-300">
@@ -27,7 +29,7 @@ function LinksSection({ links }: LinksSectionProps) {
                 {link.title}
               </span>
             </div>
-          </a>
+          </Card>
         ))}
       </div>
     </Section>

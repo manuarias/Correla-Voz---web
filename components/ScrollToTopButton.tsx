@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Button } from './ui/button';
 
 interface Particle {
   id: number;
@@ -123,10 +124,10 @@ const ScrollToTopButton: React.FC = () => {
   return (
     <>
       <div className="fixed bottom-5 right-5 z-40">
-        <button
-          type="button"
+        <Button
+          size="icon"
           onClick={handleClick}
-          className={`w-12 h-12 flex items-center justify-center rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-300 ease-in-out ${(isVisible && !isAnimating) ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
+          className={`w-12 h-12 rounded-full shadow-lg transition-all duration-300 ease-in-out ${(isVisible && !isAnimating) ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
             }`}
           aria-label="Volver arriba"
           title="Volver arriba"
@@ -135,7 +136,7 @@ const ScrollToTopButton: React.FC = () => {
             <path d="M12 19V5"></path>
             <polyline points="5 12 12 5 19 12"></polyline>
           </svg>
-        </button>
+        </Button>
       </div>
 
       {isAnimating && (

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Section from './Section';
+import { Card } from './ui/card';
 import type { AboutSectionData, HistoryContentBlock } from '../types';
 
 interface AboutSectionProps {
@@ -53,7 +54,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ data }) => {
         </div>
 
         {/* Ensayos */}
-        <div className="max-w-2xl mx-auto bg-slate-900/60 carnival-border p-8 text-center relative rounded-xl">
+        <Card className="max-w-2xl mx-auto carnival-border p-8 text-center relative">
             <h4 className="font-bold text-xl text-teal-300 mb-4 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -76,7 +77,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ data }) => {
             </a>
 
             <p className="font-semibold text-white animate-pulse pt-4 border-t border-slate-700/50">{data.nextRehearsalInfo}</p>
-        </div>
+        </Card>
       </div>
     </Section>
   );

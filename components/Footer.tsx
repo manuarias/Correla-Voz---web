@@ -24,6 +24,9 @@ function Footer({ socialLinks }: FooterProps) {
           ))}
         </div>
         <p className="text-sm">&copy; {new Date().getFullYear()} Correla Voz. Todos los derechos reservados.</p>
+        <p className="text-xs text-slate-500 mt-2">
+          Realizado con amor <span className="text-red-400">♥</span> por Manu
+        </p>
       </div>
     </footer>
   );

@@ -1,6 +1,8 @@
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Section from './Section';
+import { Card } from './ui/card';
+import { Button } from './ui/button';
 import type { AlbumItem } from '../types';
 
 const monthMap: { [key: string]: number } = {
@@ -156,29 +158,31 @@ const PhotosSection: React.FC<PhotosSectionProps> = ({ albums }) => {
         </div>
       ) : (
         <div className="relative group/carousel">
-          <button
+          <Button
+            size="icon"
             onClick={() => scroll('left')}
             aria-label="Álbum anterior"
             disabled={!canScrollLeft}
-            className="absolute top-1/2 left-2 transform -translate-y-1/2 w-12 h-12 bg-red-600/80 hover:bg-red-600 rounded-full text-white shadow-lg z-10 hidden md:flex items-center justify-center transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0 disabled:cursor-not-allowed"
+            className="absolute top-1/2 left-2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-red-600/80 hover:bg-red-600 shadow-lg z-10 hidden md:flex opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </button>
+          </Button>
 
           <div 
             ref={scrollContainerRef}
             className="flex space-x-4 md:space-x-6 py-4 -mx-4 px-4 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory"
           >
             {albums.map((album, index) => (
-              <a
+              <Card
+                as="a"
                 key={`${album.title}-${index}`}
                 href={album.albumUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-slate-800 rounded-lg overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-red-500 snap-start flex-shrink-0 w-5/6 sm:w-1/2 md:w-1/3 lg:w-1/4"
+                className="group block overflow-hidden hover:shadow-red-500/20 transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-red-500 snap-start flex-shrink-0 w-5/6 sm:w-1/2 md:w-1/3 lg:w-1/4"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={album.imageUrl} alt={album.title} className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:-rotate-1" />
+                  <img src={album.imageUrl} alt={`Murga Correla Voz, Tandil — ${album.title}${album.date ? ` — ${album.date}` : ''}`} className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:-rotate-1" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-300"></div>
                   <div className="absolute bottom-0 left-0 p-4 w-full">
                     <h3 className="font-normal text-white line-clamp-2 leading-tight group-hover:text-red-300 transition-colors duration-300">{album.title}</h3>
@@ -190,18 +194,19 @@ const PhotosSection: React.FC<PhotosSectionProps> = ({ albums }) => {
                     )}
                   </div>
                 </div>
-              </a>
+              </Card>
             ))}
           </div>
           
-          <button
+          <Button
+            size="icon"
             onClick={() => scroll('right')}
             aria-label="Siguiente álbum"
             disabled={!canScrollRight}
-            className="absolute top-1/2 right-2 transform -translate-y-1/2 w-12 h-12 bg-red-600/80 hover:bg-red-600 rounded-full text-white shadow-lg z-10 hidden md:flex items-center justify-center transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0 disabled:cursor-not-allowed"
+            className="absolute top-1/2 right-2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-red-600/80 hover:bg-red-600 shadow-lg z-10 hidden md:flex opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
+          </Button>
         </div>
       )}
     </Section>
