@@ -18,6 +18,10 @@ export interface AlbumItem {
   title: string;
   imageUrl: string;
   albumUrl: string;
+  /**
+   * Fecha del álbum en formato legible (ej: "15 de Noviembre, 2025").
+   * Opcional — si no existe, el alt text no incluye fecha.
+   */
   date?: string;
 }
 
