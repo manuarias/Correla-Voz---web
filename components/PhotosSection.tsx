@@ -182,7 +182,7 @@ const PhotosSection: React.FC<PhotosSectionProps> = ({ albums }) => {
                 className="group block overflow-hidden hover:shadow-red-500/20 transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-red-500 snap-start flex-shrink-0 w-5/6 sm:w-1/2 md:w-1/3 lg:w-1/4"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={album.imageUrl} alt={album.title} className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:-rotate-1" />
+                  <img src={album.imageUrl} alt={`Murga Correla Voz, Tandil — ${album.title}${album.date ? ` — ${album.date}` : ''}`} className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:-rotate-1" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-300"></div>
                   <div className="absolute bottom-0 left-0 p-4 w-full">
                     <h3 className="font-normal text-white line-clamp-2 leading-tight group-hover:text-red-300 transition-colors duration-300">{album.title}</h3>

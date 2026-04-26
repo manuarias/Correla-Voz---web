@@ -58,4 +58,39 @@ describe('PhotosSection', () => {
       screen.getByText('No hay álbumes de fotos para mostrar en este momento.')
     ).toBeInTheDocument()
   })
+
+  it('includes full branding in alt text', () => {
+    const mockAlbumsWithDate: AlbumItem[] = [
+      {
+        title: 'Tandilia 2025',
+        imageUrl: 'https://example.com/img.jpg',
+        albumUrl: 'https://example.com/album',
+        date: '15 de Noviembre, 2025',
+      },
+    ]
+    render(<PhotosSection albums={mockAlbumsWithDate} />)
+
+    const img = screen.getByRole('img')
+    expect(img).toHaveAttribute(
+      'alt',
+      'Murga Correla Voz, Tandil — Tandilia 2025 — 15 de Noviembre, 2025'
+    )
+  })
+
+  it('excludes date from alt text when date is undefined', () => {
+    const mockAlbumsWithoutDate: AlbumItem[] = [
+      {
+        title: 'Evento Sin Fecha',
+        imageUrl: 'https://example.com/img.jpg',
+        albumUrl: 'https://example.com/album',
+      },
+    ]
+    render(<PhotosSection albums={mockAlbumsWithoutDate} />)
+
+    const img = screen.getByRole('img')
+    expect(img).toHaveAttribute(
+      'alt',
+      'Murga Correla Voz, Tandil — Evento Sin Fecha'
+    )
+  })
 })
