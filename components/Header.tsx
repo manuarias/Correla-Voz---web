@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ heroText }) => {
     >
       <div aria-hidden="true" className="absolute inset-0 w-full h-full">
         <img
-          src="https://raw.githubusercontent.com/manuarias/correla_voz_repository/refs/heads/main/assets/heroImg.jpg"
+          src="/images/hero.jpg"
           alt=""
           className="w-full h-full object-cover animate-kenburns"
         />
