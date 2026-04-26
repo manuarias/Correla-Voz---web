@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://murgacorrelavoz.com.ar/sitemap.xml
