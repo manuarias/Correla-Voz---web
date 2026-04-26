@@ -38,7 +38,7 @@ describe('Meta Tags', () => {
 
     it('has canonical link', () => {
       const href = getLinkHref(indexHtml, 'canonical')
-      expect(href).toBe('https://correlavoz.com.ar')
+      expect(href).toBe('https://murgacorrelavoz.com.ar')
     })
 
     it('has robots meta tag', () => {
@@ -70,7 +70,7 @@ describe('Meta Tags', () => {
 
     it('has og:url', () => {
       const content = getMetaContent(indexHtml, 'property', 'og:url')
-      expect(content).toBe('https://correlavoz.com.ar')
+      expect(content).toBe('https://murgacorrelavoz.com.ar')
     })
 
     it('has og:type', () => {
