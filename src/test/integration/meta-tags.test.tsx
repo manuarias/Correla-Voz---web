@@ -26,7 +26,7 @@ describe('Meta Tags', () => {
   describe('SEO meta tags', () => {
     it('has description meta tag', () => {
       const content = getMetaContent(indexHtml, 'name', 'description')
-      expect(content).toContain('murga')
+      expect(content).toContain('Murga')
       expect(content).toContain('Tandil')
     })
 
@@ -38,7 +38,7 @@ describe('Meta Tags', () => {
 
     it('has canonical link', () => {
       const href = getLinkHref(indexHtml, 'canonical')
-      expect(href).toBe('https://murgacorrelavoz.com.ar')
+      expect(href).toBe('https://www.murgacorrelavoz.com.ar')
     })
 
     it('has robots meta tag', () => {
@@ -48,29 +48,29 @@ describe('Meta Tags', () => {
 
     it('has correct title', () => {
       const match = indexHtml.match(/<title>([^<]+)<\/title>/i)
-      expect(match?.[1]).toBe('Correla Voz — Murga de Tandil')
+      expect(match?.[1]).toBe('Murga Correla Voz - Tandil | Murga, familia y amigos.')
     })
   })
 
   describe('Open Graph meta tags', () => {
     it('has og:title', () => {
       const content = getMetaContent(indexHtml, 'property', 'og:title')
-      expect(content).toBe('Correla Voz — Murga de Tandil')
+      expect(content).toBe('Murga Correla Voz - Tandil | Murga, familia y amigos.')
     })
 
     it('has og:description', () => {
       const content = getMetaContent(indexHtml, 'property', 'og:description')
-      expect(content).toContain('murga')
+      expect(content).toContain('Murga')
     })
 
     it('has og:image', () => {
       const content = getMetaContent(indexHtml, 'property', 'og:image')
-      expect(content).toContain('cumplecorso2025.jpg')
+      expect(content).toContain('og-image.jpg')
     })
 
     it('has og:url', () => {
       const content = getMetaContent(indexHtml, 'property', 'og:url')
-      expect(content).toBe('https://murgacorrelavoz.com.ar')
+      expect(content).toBe('https://www.murgacorrelavoz.com.ar')
     })
 
     it('has og:type', () => {
@@ -97,17 +97,17 @@ describe('Meta Tags', () => {
 
     it('has twitter:title', () => {
       const content = getMetaContent(indexHtml, 'name', 'twitter:title')
-      expect(content).toBe('Correla Voz — Murga de Tandil')
+      expect(content).toBe('Murga Correla Voz - Tandil | Murga, familia y amigos.')
     })
 
     it('has twitter:description', () => {
       const content = getMetaContent(indexHtml, 'name', 'twitter:description')
-      expect(content).toContain('murga')
+      expect(content).toContain('Murga')
     })
 
     it('has twitter:image', () => {
       const content = getMetaContent(indexHtml, 'name', 'twitter:image')
-      expect(content).toContain('cumplecorso2025.jpg')
+      expect(content).toContain('og-image.jpg')
     })
   })
 })
