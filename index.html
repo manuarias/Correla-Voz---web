@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 
 <head>
   <meta charset="UTF-8" />
@@ -39,6 +39,49 @@
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;600;700&family=Rye&display=swap"
     rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/wc-mano-negra" rel="stylesheet">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://murgacorrelavoz.com.ar/#website",
+        "url": "https://murgacorrelavoz.com.ar",
+        "name": "Correla Voz — Murga de Tandil",
+        "description": "Somos Correla Voz, una murga de Tandil. Hacemos que se prendan los bombos, el baile y la garganta para decir lo que otros callan.",
+        "inLanguage": "es-AR"
+      },
+      {
+        "@type": "PerformingGroup",
+        "@id": "https://murgacorrelavoz.com.ar/#organization",
+        "name": "Correla Voz",
+        "alternateName": "Murga Correla Voz",
+        "description": "Murga de Tandil, Buenos Aires, Argentina. Proyecto artístico, social y cultural nacido en 2014.",
+        "url": "https://murgacorrelavoz.com.ar",
+        "foundingDate": "2014-08-31",
+        "location": {
+          "@type": "Place",
+          "name": "Tandil",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Tandil",
+            "addressRegion": "Buenos Aires",
+            "addressCountry": "AR"
+          }
+        },
+        "sameAs": [
+          "https://www.instagram.com/correla_voz/",
+          "https://youtu.be/EkqDewCIcWk",
+          "https://open.spotify.com/track/6ABWoKbJW5wBPkRBvGr6e7"
+        ],
+        "genre": ["Murga", "Carnaval", "Cultura Popular"],
+        "keywords": ["murga", "Tandil", "carnaval", "cultura popular", "arte callejero"]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="text-white">

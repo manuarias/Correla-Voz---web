@@ -1,7 +1,7 @@
 {
   "name": "correla-voz-web",
   "private": true,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -34,6 +34,7 @@
     "eslint-plugin-react": "^7.37.5",
     "jsdom": "^29.0.1",
     "postcss": "^8.5.6",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
