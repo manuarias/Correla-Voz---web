@@ -83,8 +83,8 @@ jobs:
         if: steps.version.outputs.type == 'release'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.version.outputs.version }}
-          name: Release v${{ steps.version.outputs.version }}
+          tag_name: ${{ steps.version.outputs.version }}
+          name: Release ${{ steps.version.outputs.version }}
           generate_release_notes: true
           draft: false
         env:
@@ -94,7 +94,7 @@ jobs:
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           TYPE="${{ steps.version.outputs.type }}"
-          BACKPORT_BRANCH="backport/v${VERSION}"
+          BACKPORT_BRANCH="backport/${VERSION}"
           
           # Configuramos un usuario de git genérico de actions bot
           git config user.name "github-actions[bot]"
@@ -115,14 +115,14 @@ jobs:
           fi
           
           git add -A
-          git commit -m "chore: backport v${VERSION} to develop"
+          git commit -m "chore: backport ${VERSION} to develop"
           git push -u origin "$BACKPORT_BRANCH"
           
           # Usamos GitHub CLI para crear el PR contra develop
           gh pr create \
             --base develop \
             --head "$BACKPORT_BRANCH" \
-            --title "chore: backport v${VERSION} to develop" \
-            --body "Este PR fue generado automáticamente al lanzar el release \`v${VERSION}\`. Mergea este PR para mantener \`develop\` sincronizado con \`main\` y actualizar el historial."
+            --title "chore: backport ${VERSION} to develop" \
+            --body "Este PR fue generado automáticamente al lanzar el release \`${VERSION}\`. Mergea este PR para mantener \`develop\` sincronizado con \`main\` y actualizar el historial."
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
