@@ -23,15 +23,14 @@ concurrency:
 
 permissions:
   contents: write
-  pull-requests: write # Permiso necesario para que el bot pueda crear el PR
+  pull-requests: write
 
 jobs:
   build:
-    # Evitamos que el build corra cuando el PR se cierra (el push a main ya dispara un build)
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    
+
     steps:
       - uses: actions/checkout@v4
 
@@ -46,45 +45,45 @@ jobs:
       - run: npm run build
 
   release:
-    # Ejecutar solo si:
-    # 1. Es un evento de PR
-    # 2. El PR fue cerrado
-    # 3. El PR fue mergeado
-    # 4. Se mergeó hacia la rama 'main'
-    # 5. La rama de origen era 'release/*' o 'hotfix/*'
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.base_ref == 'main' && (startsWith(github.head_ref, 'release/') || startsWith(github.head_ref, 'hotfix/'))
+    # Ejecutar solo en push a main cuando el commit sea un merge de release/* o hotfix/*
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && (startsWith(github.event.head_commit.message, 'release:') || startsWith(github.event.head_commit.message, 'hotfix:'))
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: main
 
-      - name: Extract version
+      - name: Extract version and type
         id: version
         run: |
-          BRANCH="${{ github.head_ref }}"
-          # Detect branch type
-          if [[ "$BRANCH" == release/* ]]; then
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+
+          # Detectar tipo por el mensaje del commit
+          if [[ "$COMMIT_MSG" == release:* ]]; then
             TYPE="release"
           else
             TYPE="hotfix"
           fi
           echo "type=$TYPE" >> $GITHUB_OUTPUT
-          
-          # Extract version from branch name
-          VERSION=${BRANCH#release/}
-          VERSION=${VERSION#hotfix/}
-          VERSION=${VERSION#v}
+
+          # Extraer versión de package.json (ya fue bumpeda en la rama release/hotfix)
+          VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Git Tag
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          git tag "$VERSION"
+          git push origin "$VERSION"
 
       - name: Create GitHub Release
         if: steps.version.outputs.type == 'release'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.version.outputs.version }}
-          name: Release v${{ steps.version.outputs.version }}
+          tag_name: ${{ steps.version.outputs.version }}
+          name: Release ${{ steps.version.outputs.version }}
           generate_release_notes: true
           draft: false
         env:
@@ -94,35 +93,34 @@ jobs:
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           TYPE="${{ steps.version.outputs.type }}"
-          BACKPORT_BRANCH="backport/v${VERSION}"
-          
+          BACKPORT_BRANCH="backport/${VERSION}"
+
           # Configuramos un usuario de git genérico de actions bot
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
-          # Fetch develop as base (not main!)
+
+          # Fetch develop como base
           git fetch origin develop:develop
           git checkout develop
           git checkout -b "$BACKPORT_BRANCH"
-          
+
           if [ "$TYPE" = "release" ]; then
-            # RELEASE: Cherry-pick only the version bump commit (latest commit)
-            git cherry-pick HEAD --no-commit
+            # RELEASE: Cherry-pick solo el commit de version bump (último commit de main)
+            git cherry-pick main --no-commit
           else
-            # HOTFIX: Cherry-pick commits not in main
-            MAIN_SHA=$(git rev-parse main)
-            git log --not $MAIN_SHA --format=%H | xargs -I {} git cherry-pick {} --no-commit
+            # HOTFIX: Cherry-pick commits que están en main pero no en develop
+            git log --reverse --format=%H develop..main | xargs -I {} git cherry-pick {} --no-commit
           fi
-          
+
           git add -A
-          git commit -m "chore: backport v${VERSION} to develop"
+          git commit -m "chore: backport ${VERSION} to develop"
           git push -u origin "$BACKPORT_BRANCH"
-          
-          # Usamos GitHub CLI para crear el PR contra develop
+
+          # Crear PR contra develop
           gh pr create \
             --base develop \
             --head "$BACKPORT_BRANCH" \
-            --title "chore: backport v${VERSION} to develop" \
-            --body "Este PR fue generado automáticamente al lanzar el release \`v${VERSION}\`. Mergea este PR para mantener \`develop\` sincronizado con \`main\` y actualizar el historial."
+            --title "chore: backport ${VERSION} to develop" \
+            --body "Este PR fue generado automáticamente al lanzar el release \`${VERSION}\`. Mergea este PR para mantener \`develop\` sincronizado con \`main\` y actualizar el historial."
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
