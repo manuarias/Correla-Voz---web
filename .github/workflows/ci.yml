@@ -105,8 +105,8 @@ jobs:
           git checkout -b "$BACKPORT_BRANCH"
 
           if [ "$TYPE" = "release" ]; then
-            # RELEASE: Cherry-pick solo el commit de version bump (último commit de main)
-            git cherry-pick main --no-commit
+            # RELEASE: Mergear main en develop (el merge commit contiene todo)
+            git merge main --no-commit --no-ff
           else
             # HOTFIX: Cherry-pick commits que están en main pero no en develop
             git log --reverse --format=%H develop..main | xargs -I {} git cherry-pick {} --no-commit
